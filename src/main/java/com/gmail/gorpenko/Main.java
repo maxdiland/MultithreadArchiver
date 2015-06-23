@@ -61,7 +61,7 @@ public class Main {
             throw new InputParameterException(String.format(INPUT_DESTINATION_FILE_ALREADY_EXIST, destFilePath));
         }
 
-        File destinationFolder = file.getParentFile();
+        File destinationFolder = file.getAbsoluteFile().getParentFile();
         if (FileUtil.fileNotExist(destinationFolder)) {
             throw new InputParameterException(String.format(INPUT_DESTINATION_FOLDER_NOT_EXIST, destinationFolder));
         }
