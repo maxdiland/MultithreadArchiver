@@ -1,5 +1,7 @@
 package com.gmail.gorpenko;
 
+import com.gmail.gorpenko.compressor.Compressor;
+import com.gmail.gorpenko.decompressor.Decompressor;
 import com.gmail.gorpenko.exception.InputParameterException;
 import com.gmail.gorpenko.exception.ShowHelpNeededException;
 import com.gmail.gorpenko.util.FileUtil;
@@ -32,9 +34,25 @@ public class Main {
         }
 
         String command = validateAndGetCommand(args[0]);
-        File fileToCompress = validateAndGetCompressingFile(args[1]);
+        File sourceFile = validateAndGetCompressingFile(args[1]);
         File destinationFile = validateAndGetDestinationFile(args[2]);
-        CompressingMode compressingMode = validateAndGetCompressingMode(args);
+        Mode compressingMode = validateAndGetCompressingMode(args);
+
+        if (COMMAND_COMPRESS.equals(command)) {
+            doCompress(sourceFile, destinationFile, compressingMode);
+        } else {
+            doDecompress(sourceFile, destinationFile, compressingMode);
+        }
+    }
+
+    private static void doCompress(File sourceFile, File destinationFile, Mode compressingMode) {
+        Compressor compressor = compressingMode.getAssociatedCompressor();
+        compressor.compress(sourceFile, destinationFile);
+    }
+
+    private static void doDecompress(File sourceFile, File destinationFile, Mode compressingMode) {
+        Decompressor decompressor = compressingMode.getAssociatedDecompressor();
+        decompressor.decompress(sourceFile, destinationFile);
     }
 
     /* Visible for testing */
@@ -70,13 +88,13 @@ public class Main {
     }
 
     /* Visible for testing */
-    static CompressingMode validateAndGetCompressingMode(String[] args) {
+    static Mode validateAndGetCompressingMode(String[] args) {
         if (args.length < 4) {
-            return CompressingMode.SIMPLE;
+            return Mode.SIMPLE;
         } else {
             String mode = args[3];
             try {
-                return CompressingMode.valueOf(mode.toUpperCase());
+                return Mode.valueOf(mode.toUpperCase());
             } catch (IllegalArgumentException e) {
                 throw new InputParameterException(String.format(INPUT_UNKNOWN_MODE, mode));
             }
