@@ -88,25 +88,25 @@ public class MainTest {
     @Test
     public void validateAndGetCompressingModeForNotPassedMode() {
         String[] args = {"", "", ""};
-        CompressingMode gottenMode = Main.validateAndGetCompressingMode(args);
+        Mode gottenMode = Main.validateAndGetCompressingMode(args);
 
-        Assert.assertEquals(CompressingMode.SIMPLE, gottenMode);
+        Assert.assertEquals(Mode.SIMPLE, gottenMode);
     }
 
     @Test
     public void validateAndGetCompressingModeForSimpleMode() {
         String[] args = {"", "", "", "sImple"};
-        CompressingMode gottenMode = Main.validateAndGetCompressingMode(args);
+        Mode gottenMode = Main.validateAndGetCompressingMode(args);
 
-        Assert.assertEquals(CompressingMode.SIMPLE, gottenMode);
+        Assert.assertEquals(Mode.SIMPLE, gottenMode);
     }
 
     @Test
     public void validateAndGetCompressingModeForMultiMode() {
         String[] args = {"", "", "", "muLTi"};
-        CompressingMode gottenMode = Main.validateAndGetCompressingMode(args);
+        Mode gottenMode = Main.validateAndGetCompressingMode(args);
 
-        Assert.assertEquals(CompressingMode.MULTI, gottenMode);
+        Assert.assertEquals(Mode.MULTI, gottenMode);
     }
 
     @Test(expected = InputParameterException.class)
