@@ -2,6 +2,7 @@ package com.gmail.gorpenko;
 
 import com.gmail.gorpenko.compressor.Compressor;
 import com.gmail.gorpenko.decompressor.Decompressor;
+import com.gmail.gorpenko.exception.CompressionDecompressionException;
 import com.gmail.gorpenko.exception.InputParameterException;
 import com.gmail.gorpenko.exception.ShowHelpNeededException;
 import com.gmail.gorpenko.util.FileUtil;
@@ -24,6 +25,13 @@ public class Main {
             showHelp();
         } catch (InputParameterException inputParameterException) {
             System.out.println(inputParameterException.getMessage());
+        } catch (CompressionDecompressionException compressingDecompressingException) {
+            System.out.println("An error occurred.");
+            Throwable cause = compressingDecompressingException.getCause();
+            if (cause != null) {
+                System.out.print("Details: ");
+                System.out.println(cause.getMessage());
+            }
         }
     }
 
