@@ -1,8 +1,6 @@
 package com.gmail.gorpenko.exception;
 
-/**
- * author Maksim Diland
- */
+
 public class InputParameterException extends RuntimeException {
     public InputParameterException() {
     }

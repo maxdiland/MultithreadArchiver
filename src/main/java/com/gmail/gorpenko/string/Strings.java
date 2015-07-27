@@ -1,8 +1,6 @@
 package com.gmail.gorpenko.string;
 
-/**
- * author Maksim Diland
- */
+
 public class Strings {
     public static final String HOW_TO_USE_HELP = "Description how to use...";
 

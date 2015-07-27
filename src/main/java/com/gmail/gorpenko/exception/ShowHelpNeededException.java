@@ -1,8 +1,6 @@
 package com.gmail.gorpenko.exception;
 
-/**
- * author Maksim Diland
- */
+
 public class ShowHelpNeededException extends RuntimeException {
     public ShowHelpNeededException() {
     }

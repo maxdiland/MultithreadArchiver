@@ -1,8 +1,6 @@
 package com.gmail.gorpenko.exception;
 
-/**
- * author Maksim Diland
- */
+
 public class CompressionDecompressionException extends RuntimeException {
     public CompressionDecompressionException() {
     }

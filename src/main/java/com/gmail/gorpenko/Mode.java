@@ -7,9 +7,6 @@ import com.gmail.gorpenko.decompressor.Decompressor;
 import com.gmail.gorpenko.decompressor.MultiThreadDecompressor;
 import com.gmail.gorpenko.decompressor.SimpleDecompressor;
 
-/**
- * author Maksim Diland
- */
 public enum Mode {
     SIMPLE {
         @Override

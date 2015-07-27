@@ -12,13 +12,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 
-/**
- * author Maksim Diland
- */
-public class SimpleDecompressor implements Decompressor {
 
+public class SimpleDecompressor implements Decompressor {
+    public static void main(String[] args) {
+        new SimpleDecompressor().decompress(new File("d://result2.gz"), new File("d://result2S.log"));
+    }
     @Override
     public void decompress(File fileToDecompress, File destinationFile) {
+        long time = System.nanoTime();
         try ( InputStream inputStream = new BufferedInputStream(new GZIPInputStream(new FileInputStream(fileToDecompress)));
               OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(destinationFile)) ) {
 
@@ -27,7 +28,7 @@ public class SimpleDecompressor implements Decompressor {
                 outputStream.write(readByte);
             }
             outputStream.flush();
-
+            System.out.println((System.nanoTime() - time)/1000.0);
         } catch (IOException e) {
             throw new CompressionDecompressionException(e);
         }
